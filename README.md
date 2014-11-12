@@ -2,6 +2,7 @@ js-frameset
 ===========
 
 通过div使页面自动分屏，实现与原生frameset一样的功能  
+
 在页面加载`star-frameset.js`即可，会自动查找`$(".frameset")`进行分屏
 
 ---
