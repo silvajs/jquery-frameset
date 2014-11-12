@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>test</title>
+    <style type="text/css">
+        body {margin: 0}
+        .c {overflow: hidden;position: absolute;left: 0;top: 100px;right: 0;bottom: 0;}
+        .d {background: #ccc;border: 5px solid red;height: 500px;}
+        .d2 {background: green;border: 5px solid red;height: 500px;}
+        p {height: 1000px;margin: 0}
+        .f1,.f2 {float: left;height: 100%;width: 300px;border: 5px solid #ccc; box-sizing: border-box;}
+    </style>
+</head>
+
+<body>
+    <h1>测试frameset，功能与原生的framset标签一致</h1>
+    <div class='c frameset' rows="30%,20%,*">
+        <div class='d'><p>hello</p></div>
+        <div class='d'><p>hello</p></div>
+        <div class='frameset' cols="200,*,200">
+            <div class='d2'><p>hi</p></div>
+            <div class='d2'><p>hi</p></div>
+            <div class='d2'><p>hi</p></div>
+        </div>
+    </div>
+
+    <!-- <div class='c'>
+        <div class='f1'></div>
+        <div class='f2'></div>
+    </div> -->
+
+
+    <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src='star-frameset.js'></script>
+    <script type="text/javascript">
+
+    </script>
+  
+</body>
+</html>
