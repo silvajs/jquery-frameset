@@ -18,6 +18,9 @@ js-frameset
 
 ### js-frameset的使用方法
 ```
+<script src="jquery.js"></script>
+<script type="text/javascript" src='star-frameset.js'></script>
+
 // 需要指定`class="frameset"`，同时需要属性`rows`或者`cols`，不能同时使用这两个属性
 <div class="frameset" rows="25%,50%,25%">
     <div></div>
