@@ -17,6 +17,7 @@ js-frameset
 
 ### js-frameset的使用方法
 ```
+// 需要指定`class="frameset"`，同时需要属性`rows`或者`cols`，不能同时使用这两个属性
 <div class="frameset" rows="25%,50%,25%">
     <div></div>
     <div></div>
@@ -24,7 +25,6 @@ js-frameset
 </div>
 ```
 
-需要指定`class="frameset"`，同时需要属性`rows`或者`cols`，不能同时使用这两个属性。
 
 `rows`和`cols`的值可以是：
 - `rows="40%,60%"`：上下两部分分屏，上部分占总高的40%，下部分占总高60%
