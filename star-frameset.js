@@ -194,7 +194,7 @@
         },
 
         addRowLine: function(frame) {
-            var line = $('<div style="' + rowLineCss + '">');
+            var line = $('<div style="' + rowLineCss + '"></div>');
             line.direction = 'y';
             line.frame = frame;
             this.frameset.append(line);
@@ -214,7 +214,7 @@
         },
 
         addColLine: function(frame) {
-            var line = $('<div style="' + colLineCss + '">');
+            var line = $('<div style="' + colLineCss + '"></div>');
             line.direction = 'x';
             line.frame = frame;
             this.frameset.append(line);
