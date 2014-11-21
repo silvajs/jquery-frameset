@@ -60,17 +60,6 @@
             };
     })();
 
-
-    $.fn.starFrameset = function() {
-        this.each(function() {
-            var data = $(this).data('star-drop');
-            if (!data) {
-                $(this).data('star-drop', new StarFrameset(this));
-            }
-        });
-        return this;
-    }
-
     function getFrameExtent(framesetExtent, rowsOrCols) {
         var rs = $.trim(rowsOrCols).split(/\s*,\s*/);
         var res = [];
@@ -143,7 +132,12 @@
                     }
                     frame.css(css);
                     if (i < len - 1) {
-                        this.addRowLine(frame);
+                        if (!this['row' + i]) {
+                            var rowLine = this.addRowLine(frame);
+                            this['row' + i] = rowLine;
+                        } else {
+                            this.renderRowLine(this['row' + i]);
+                        }
                     }
                 }
             } else if (cols) {
@@ -167,7 +161,12 @@
                     }
                     frame.css(css);
                     if (i < len - 1) {
-                        this.addColLine(frame);
+                        if (!this['col' + i]) {
+                            var colLine = this.addColLine(frame);
+                            this['col' + i] = colLine;
+                        } else {
+                            this.renderColLine(this['col' + i]);
+                        }
                     }
                 }
             }
@@ -183,8 +182,8 @@
                 xy.nx = frame.next().outerWidth();
                 xy.ny = frame.next().outerHeight();
                 xy.lx = parseFloat(target.css('left')),
-                xy.ly = parseFloat(target.css('top')),
-                xy.x = e.clientX;
+                    xy.ly = parseFloat(target.css('top')),
+                    xy.x = e.clientX;
                 xy.y = e.clientY;
                 if (line.direction === 'y') {
                     disableSelection('n-resize');
@@ -195,33 +194,43 @@
         },
 
         addRowLine: function(frame) {
+            var line = $('<div style="' + rowLineCss + '">');
+            line.direction = 'y';
+            line.frame = frame;
+            this.frameset.append(line);
+            this.on(line);
+            return line;
+        },
+
+        renderRowLine: function(line) {
+            var frame = line.frame;
             var left = frame.get(0).offsetLeft,
                 top = frame.get(0).offsetTop;
-            var line = $('<div style="' + rowLineCss + '">');
             line.css({
                 'left': left + 'px',
                 'top': (top + frame.outerHeight() - 3) + 'px',
                 'width': '100%'
             });
-            line.direction = 'y';
-            line.frame = frame;
-            this.frameset.append(line);
-            this.on(line);
         },
 
         addColLine: function(frame) {
+            var line = $('<div style="' + colLineCss + '">');
+            line.direction = 'x';
+            line.frame = frame;
+            this.frameset.append(line);
+            this.on(line);
+            return line;
+        },
+
+        renderColLine: function(line) {
+            var frame = line.frame;
             var left = frame.get(0).offsetLeft,
                 top = frame.get(0).offsetTop;
-            var line = $('<div style="' + colLineCss + '">');
             line.css({
                 'left': (left + frame.outerWidth() - 3) + 'px',
                 'top': top + 'px',
                 'height': '100%'
             });
-            line.direction = 'x';
-            line.frame = frame;
-            this.frameset.append(line);
-            this.on(line);
         }
     }
 
@@ -238,7 +247,8 @@
         lx: 0,
         ly: 0
     };
-    var requestId;
+    var requestId,
+        framesetList = [];
 
     $(document).on('mousemove', function(e) {
         var scroll = 30;
@@ -287,6 +297,28 @@
         }
         enableSelection();
     });
+
+    var resizeTimer;
+    $(window).on('resize', function(e) {
+        resizeTimer && clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            for (var i = 0, len = framesetList.length; i < len; i++) {
+                framesetList[i].init();
+            }
+        }, 70);
+    });    
+
+    $.fn.starFrameset = function() {
+        this.each(function() {
+            var data = $(this).data('star-frameset');
+            if (!data) {
+                var starFrameset = new StarFrameset(this);
+                framesetList.push(starFrameset)
+                $(this).data('star-frameset', starFrameset);
+            }
+        });
+        return this;
+    }
 
     $('.frameset').starFrameset();
 
