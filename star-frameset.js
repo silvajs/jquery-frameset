@@ -135,9 +135,8 @@
                         if (!this['row' + i]) {
                             var rowLine = this.addRowLine(frame);
                             this['row' + i] = rowLine;
-                        } else {
-                            this.renderRowLine(this['row' + i]);
                         }
+                        this.renderRowLine(this['row' + i]);
                     }
                 }
             } else if (cols) {
@@ -164,9 +163,8 @@
                         if (!this['col' + i]) {
                             var colLine = this.addColLine(frame);
                             this['col' + i] = colLine;
-                        } else {
-                            this.renderColLine(this['col' + i]);
                         }
+                        this.renderColLine(this['col' + i]);
                     }
                 }
             }
