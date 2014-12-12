@@ -16,26 +16,53 @@
 <body>
     <h1>测试frameset，功能与原生的framset标签一致</h1>
     <div class='c frameset' rows="30%,20%,*">
-        <div class='d'><p>hello</p></div>
-        <div class='d'><p>hello</p></div>
+        <div class='d' style="position: relative;min-height: 100px;">
+            <div style='position: absolute;left:0;top:0;right:0;bottom:40px;width: 100%;overflow: auto'>
+                <table>
+                    <thead><tr><th>sadf</th><th>sadf</th></tr></thead>
+                    <tbody>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                        <tr><td>test</td><td>test</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="height: 40px;background: orange;position: absolute;left:0;right:0;bottom:0;">我的高度始终不变</div>
+        </div>
+        <div class='d'>
+            <p>hello</p>
+        </div>
         <div class='frameset' cols="200,*,200">
-            <div class='d2'><p>hi</p></div>
-            <div class='d2'><p>hi</p></div>
-            <div class='d2'><p>hi</p></div>
+            <div class='d2'>
+                <p>hi</p>
+            </div>
+            <div class='d2'>
+                <p>hi</p>
+            </div>
+            <div class='d2'>
+                <p>hi</p>
+            </div>
         </div>
     </div>
 
     <!-- <div class='c'>
-        <div class='f1'></div>
-        <div class='f2'></div>
-    </div> -->
+    <div class='f1'></div>
+    <div class='f2'></div>
+</div>
+-->
+<script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
+<script type="text/javascript" src='star-frameset.js'></script>
+<script type="text/javascript"></script>
 
-
-    <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
-    <script type="text/javascript" src='star-frameset.js'></script>
-    <script type="text/javascript">
-
-    </script>
-  
 </body>
 </html>

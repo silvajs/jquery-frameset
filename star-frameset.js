@@ -195,6 +195,7 @@
             var line = $('<div style="' + rowLineCss + '"></div>');
             line.direction = 'y';
             line.frame = frame;
+            frame.minHeight = parseFloat(frame.css('min-height')) || 30;
             this.frameset.append(line);
             this.on(line);
             return line;
@@ -253,9 +254,10 @@
         if (!target) {
             return;
         }
+        
         if (target.direction === 'y') {
             var y = e.clientY - xy.y;
-            if (xy.fy + y < scroll || xy.ny - y < scroll) {
+            if (xy.fy + y < Math.max(target.frame.minHeight, scroll) || xy.ny - y < scroll) {
                 return;
             }
             requestId = window.requestAnimationFrame(function() {
